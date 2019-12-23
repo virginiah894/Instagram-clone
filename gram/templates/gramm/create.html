@@ -1,0 +1,13 @@
+{%extends 'gram/base.html%}
+{% load bootstrap4%}
+{% load crispy_forms_tags %}
+{%block content%}
+<div class='panel panel-default' style="width: 400px; margin: auto;">
+  <div class="panel-body">
+    {%crispy form%}
+    {%csrf_token%}
+  </div>
+
+</div>
+
+{%end block %}
