@@ -66,3 +66,12 @@ header{
   border-left: 1.3px solid #000;
   height: 34px;
 } 
+
+.content{
+  top:49px;
+  
+  background-color: ghostwhite;
+  width: 100%;
+  padding-top: 44px;
+  position: absolute;
+}
