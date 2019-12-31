@@ -16,8 +16,8 @@ class PostListView(ListView):
   context_object_name ='posts'
 
 class PostCreateView(CreateView):
-  template = 'gramm/create.html'
-  form = PostForm()
+  template_name = 'gramm/create.html'
+  form_class = PostForm
   queryset = Post.objects.all()
   success_url = '/' 
 
