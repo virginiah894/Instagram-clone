@@ -2,8 +2,39 @@
   {% load bootstrap4%}
 {%block content %}
 {% for post in posts %}
-<p>{{post.author}}</p>
+<div class="card">
+  <div class="card_header">
+    <div class="pic">
+      <div class="info">
+        <div class="name">{{post.author}}</div>
+        <div class="location">Kenya</div>
+      </div>
+<div id="options"><i class="fa fa-ellipsis-h"></i>
+
+</div>
+    </div>
+    <div id="image">
+      <img src="" alt="">{{post.image}}
+    </div>
+    <div class="reactions">
+<a href=""><i class="fa fa-heart"></i></a>
+<a href=""><i class="fa fa-comment"></i></a>
+<a href=""><i class="fa fa-share"></i></a>
+<a href=""><i class="fa fa-bookmark"></i></a>
+    </div>
+    <div class="like">
+    <a href="">likes</a>
+</div>
+<div class="caption">
+  <a href=""><h4>{{post.author}}</h4></a>
+  <span>{{post.caption}}</span>
+</div>
+<div id="time">{{post.posted_date | timesince}} ago</div>
+  </div>
+
+</div>
+<!-- <p>{{post.author}}</p>
 <p>{{post.caption}}</p>
-<p>{{post.posted_date}}</p>
+<p>{{post.posted_date }}</p> -->
 {% endfor %}
 {%endblock%}
