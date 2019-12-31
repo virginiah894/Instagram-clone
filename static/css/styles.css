@@ -57,7 +57,10 @@ header{
   font-size: 1.4em;
 
 }
-
+.search a{
+  padding:12px;
+  font-size:1.2em;
+}
 .verticle{
   margin-left: 22px;
   border-left: 1.3px solid #000;
