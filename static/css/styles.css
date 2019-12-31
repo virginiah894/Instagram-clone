@@ -1,0 +1,65 @@
+body{
+  background-color: aliceblue;
+  
+}
+header{
+  background-color: whitesmoke;
+  border-bottom: 2px solid whitesmoke;
+  position:fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+}
+.nav{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  padding: 12px 17px;
+  flex-wrap: wrap;
+}
+.search{
+ display: flex;
+ border-radius: 3px;
+ width: 30%;
+ position: absolute;
+ text-align: center;
+ justify-content: center; 
+ color:gainsboro;
+ cursor: text;
+}
+.nav a{
+  color :black;
+}
+.logo{
+  width: 30%;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.logo a{
+  font-size:1.3em;
+  padding-left: 13px;
+
+
+}
+.icons{
+  width: 40%;
+  padding-left: 245px;
+  display: flex;
+  justify-content: flex-end;
+}
+.icons a{
+  font-weight:lighter;
+  padding-left: 25px;
+  font-size: 1.4em;
+
+}
+
+.verticle{
+  margin-left: 22px;
+  border-left: 1.3px solid #000;
+  height: 34px;
+} 
