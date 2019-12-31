@@ -6,5 +6,5 @@ from .views import (
 app_name = 'gram'
 urlpatterns = [
   path('',PostListView.as_view(),name='allPosts'),
-    path('new/',PostCreateView.as_view,name='createPost'),
+    path('new/',PostCreateView.as_view(),name='createPost'),
 ]
