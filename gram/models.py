@@ -12,6 +12,11 @@ class Post(models.Model):
     image = models.ImageField(null=True)
     caption = models.TextField()
     posted_date = models.DateTimeField(default=timezone.now)
-     
+    @classmethod
+    def search_by_author(cls,search_term):
+        posts = cls.objects.filter(author__icontains=search_term)
+        return posts
+
+
     def __str__(self):
       return self.caption
