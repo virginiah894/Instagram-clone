@@ -22,10 +22,13 @@
         <a class="verticle" href="/"></a>
         <a href="/">Instagram</a>
       </div>
+      <form action="{% url 'gram:search_posts'%}">
       <div class="search">
-        <button><input type="text" placeholder="search">
-        <a href="/"><i class="fa fa-search"></i></a></button>
-
+        
+          <input type="text" placeholder="search" name="user">
+        <a href="/">
+          <button><i class="fa fa-search"></i></a></button>
+</form>
       </div>
       <div class="icons">
         <a href="/" class="compass"><i class="fa fa-compass"></i></a>
