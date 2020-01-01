@@ -1,0 +1,7 @@
+{%extends 'gram/base.html'%}
+{% load bootstrap4%}
+
+{%block content%}
+  <img src="{{post.image.url}}" alt="" style="width:350px; height:350px;">
+  <p>{{post.caption}}</p>
+{% endblock %}
