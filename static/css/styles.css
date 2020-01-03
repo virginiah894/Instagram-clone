@@ -4,11 +4,12 @@ body{
 }
 header{
   background-color: whitesmoke;
-  border-bottom: 2px solid whitesmoke;
+  border-bottom: 22px solid whitesmoke;
   position:fixed;
   left: 0;
   top: 0;
   width: 100%;
+  height: auto;
 
 }
 .nav{
@@ -18,7 +19,9 @@ header{
   justify-content: center;
   padding: 12px 17px;
   flex-wrap: wrap;
+  height: auto;
 }
+
 .search{
  display: flex;
  border-radius: 3px;
@@ -28,6 +31,7 @@ header{
  justify-content: center; 
  color:gainsboro;
  cursor: text;
+ height: 60%;
 }
 .nav a{
   color :black;
@@ -116,7 +120,7 @@ color:slategray;
 }
 
 .content{
-  top:49px;
+  top:69px;
   left:1%;
   
   background-color: ghostwhite;

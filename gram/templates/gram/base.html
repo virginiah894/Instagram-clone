@@ -1,4 +1,5 @@
 {% load static %}
+{%load bootstrap4%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,11 @@
 <link rel="stylesheet" href="{% static 'css/styles.css'%}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>Instagram</title>
+
+  {% block styles %}
+    {% bootstrap_css %}
+  {% endblock %}
+
 </head>
 
 <body>
@@ -29,6 +35,34 @@
         <a href="/">
           <button><i class="fa fa-search"></i></a></button>
 </form>
+
+<div class="col-sm-6 col-md-6">
+  {% if user.is_authenticated %}
+  <ul>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+                <span class="caret"></span>
+            </a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="{% url 'gram:allPosts'%}">Home</a>
+        </li>
+        <li>
+          <a href="/accounts/password/change">Change Password</a>
+        </li>
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  {% else %}
+  <li>
+    <a class='btn btn-default' href="/accounts/login">Login</a>
+  </li>
+
+  {% endif %}
+</div>
       </div>
       <div class="icons">
         <a href="/" class="compass"><i class="fa fa-compass"></i></a>
@@ -39,10 +73,21 @@
     </div>
   </header>
   <hr>
+  <br>
+  <br>
+  <br>
   <div class="content">
     {%block content%}
     {% endblock%}
   </div>
+
+  {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %}
+{% endblock %}
+
+
+  
 </body>
 
 </html>

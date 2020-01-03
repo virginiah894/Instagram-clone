@@ -15,8 +15,23 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+
+
+from django.contrib.auth.views import LogoutView
 from django.urls import path, include
+from gram.views import account
+
+from account.views import login_view, register_view,logout_view
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('gram.urls'))
+    path('',include('gram.urls')),
+    path('',account),
+    path('account/login/',login_view),
+    path('account/register/',register_view),
+    path('account/logout/',logout_view),
+   
+    path('accounts/',include('registration.backends.simple.urls')),
+    path('logout/',LogoutView.as_view(),{"next_page":'/'}),
+    
+
 ]
