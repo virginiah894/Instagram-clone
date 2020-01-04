@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
@@ -74,6 +74,15 @@ def new_post(request):
 
     else:
         form =UserPostForm()
-    return render(request, 'create.html', {"form": form})
+    return render(request, 'gram/create.html', {"form": form})
 
 
+@login_required
+def profile(request):
+  current_user = request.user
+  profile = Profile.objects.all()
+  
+  posts = Post.objects.all()
+  
+  
+  return render(request,'gram/profile.html',{"profile":profile, "posts":posts})

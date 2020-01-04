@@ -3,5 +3,11 @@
 
 {%block content%}
   <img src="{{post.image.url}}" alt="" style="width:350px; height:350px;">
-  <p>{{post.caption}}</p>
+  
+  <div class="row">
+    {% autoescape on %}
+    {{post.caption| safe}}
+   {% endautoescape %}
+   </div>
+
 {% endblock %}
