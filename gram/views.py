@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post, Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
-from .forms import PostForm, UserPostForm
+from .forms import PostForm, UserPostForm,AccountUpdate,DetailsUpdate
 from django.http import HttpResponse
+from django.contrib import messages
 from django.views.generic import(
   ListView,
   CreateView,
@@ -78,11 +79,40 @@ def new_post(request):
 
 
 @login_required
+def account_update(request):
+  if request.method == 'POST':
+    # profile = Profile.objects.create(user=request.user)
+
+    user_form = AccountUpdate(request.POST,instance=request.user)
+    details_form = DetailsUpdate(request.POST,request.FILES,instance=request.user)
+    if user_form.is_valid() and details_form.is_valid():
+      user_form.save()
+      details_form.save()
+      messages.success(request,'Your Profile account has been updated successfully')
+      return redirect('gram:profile')
+  else:
+  
+
+    user_form = AccountUpdate(instance=request.user)
+    
+    details_form = DetailsUpdate(instance=request.user) 
+  forms = {
+    'user_form':user_form,
+    'details_form':details_form
+  }
+  return render(request,'gram/update_info.html',forms)
+
+
+
+
+@login_required
 def profile(request):
   current_user = request.user
-  profile = Profile.objects.all()
+  
+  profile = Profile.objects.get(user=request.user)
+  pic = Profile.objects.filter(profile_photo = current_user.id)
   
   posts = Post.objects.all()
   
   
-  return render(request,'gram/profile.html',{"profile":profile, "posts":posts})
+  return render(request,'gram/profile.html',{"profile":profile,'pic':pic,"posts":posts})

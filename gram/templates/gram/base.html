@@ -40,7 +40,7 @@
   {% if user.is_authenticated %}
   <ul>
     <li class="dropdown">
-      <a href="{% url 'gram:createPost'%}" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">create post
+      <a href="{% url 'gram:update'%}" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">{{user.username}}
                 <span class="caret"></span>
             </a>
       <ul class="dropdown-menu" role="menu">
@@ -67,6 +67,7 @@
 </div>
       </div>
       <div class="icons">
+        <a href="{% url 'gram:createPost'%}"><i class="fa fa-plus"></i></a>
         <a href="/" class="compass"><i class="fa fa-compass"></i></a>
         <a href="/" class="heart"><i class="fa fa-heart"></i></a>
         <a href="{% url 'gram:profile'%}" class="profile"><i class="fa fa-user"></i></a>

@@ -1,0 +1,41 @@
+
+{%extends 'gram/base.html'%}
+{% load bootstrap4%}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Instagram</title>
+</head>
+<body>
+    {%block content%}
+  <h1 style="text-align: center;">Update Profile</h1>
+  <form action="" method="POST" enctype="multipart/form-data" class = "form2">
+<div class='panel panel-default' style="width: 400px; margin: auto;">
+  <div class="panel-body">
+    <h5>Update Credentials</h5>
+    {%csrf_token%}
+    {{user_form|crispy}}
+<h5 style="color:rgb(12, 12, 160)">update your profile</h5>
+    {{details_form|crispy}}
+    <button>Update Information</button>
+
+    
+  </div>
+
+</div>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% bootstrap_javascript %} {% endblock %}
+
+
+</body>
+</html>

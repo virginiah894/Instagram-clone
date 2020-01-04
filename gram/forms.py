@@ -1,5 +1,7 @@
 from django import forms
-from .models import Post
+from .models import Post,Profile
+from django.contrib.auth.models import User
+
 from crispy_forms.helper import FormHelper
 from  crispy_forms.layout import Submit,Layout,Field
 
@@ -20,3 +22,14 @@ class UserPostForm(forms.ModelForm):
         model = Post
         exclude = ['author', 'posted_date','comments','likes']
        
+class DetailsUpdate(forms.ModelForm):
+  class Meta:
+    model = Profile
+    fields = ['profile_photo','bio']  
+
+    
+class AccountUpdate(forms.ModelForm):
+  email = forms.EmailField()
+  class Meta:
+    model = User
+    fields = ['username','email']

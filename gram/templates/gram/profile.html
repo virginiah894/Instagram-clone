@@ -2,9 +2,11 @@
 {% load bootstrap4%}
 
 {%block content%}
-<p>{{profile.user}}</p>
-  <img src="{{profile.profile_photo.url}}" alt="" style="width:350px; height:350px;">
-  <p>{{profile.name}}</p>
+
+  <p>{{profile.post}}</p>
   <p>{{user.username}}</p>
+  <p>{{user.post}}</p>
   <p>Hello world</p>
+  <img src="{{profile.profile_photo.url}}" alt="">
+ 
 {% endblock %}
