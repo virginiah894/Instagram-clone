@@ -14,3 +14,9 @@ class PostForm(forms.ModelForm):
        'image',
        'caption'
      ]
+
+class UserPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ['author', 'posted_date','comments','likes']
+       

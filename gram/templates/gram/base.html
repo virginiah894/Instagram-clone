@@ -36,7 +36,7 @@
           <button><i class="fa fa-search"></i></a></button>
 </form>
 
-<div class="col-sm-6 col-md-6">
+<div class="col-sm-6 col-md-6" >
   {% if user.is_authenticated %}
   <ul>
     <li class="dropdown">
@@ -44,9 +44,11 @@
                 <span class="caret"></span>
             </a>
       <ul class="dropdown-menu" role="menu">
+        
         <li>
-          <a href="{% url 'gram:allPosts'%}">Home</a>
+          <a href="{%url 'gram:createPost'%}">Create Article</a>
         </li>
+
         <li>
           <a href="/accounts/password/change">Change Password</a>
         </li>
@@ -72,10 +74,17 @@
       </div>
     </div>
   </header>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
   <hr>
-  <br>
-  <br>
-  <br>
+  
+
   <div class="content">
     {%block content%}
     {% endblock%}
@@ -83,6 +92,8 @@
 
   {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="path/to/boostrap.min.js"></script>
+
   {% bootstrap_javascript %}
 {% endblock %}
 

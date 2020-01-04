@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 
 
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth import views
 from django.urls import path, include
 from gram.views import account
 
@@ -29,9 +29,10 @@ urlpatterns = [
     path('account/login/',login_view),
     path('account/register/',register_view),
     path('account/logout/',logout_view),
+    path('tinymce/',include('tinymce.urls')),
    
     path('accounts/',include('registration.backends.simple.urls')),
-    path('logout/',LogoutView.as_view(),{"next_page":'/'}),
+    path('logout/',views.LogoutView.as_view(),{"next_page":'/'}),
     
 
 ]

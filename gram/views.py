@@ -6,7 +6,7 @@ from .models import Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
-from .forms import PostForm
+from .forms import PostForm, UserPostForm
 from django.http import HttpResponse
 from django.views.generic import(
   ListView,
@@ -60,3 +60,20 @@ def search_posts(request):
 @login_required
 def account(request):
   return render (request,'account.html',{})      
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = UserPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = current_user
+            post.save()
+        return redirect('/')
+
+    else:
+        form =UserPostForm()
+    return render(request, 'create.html', {"form": form})
+
+

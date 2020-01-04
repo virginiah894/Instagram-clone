@@ -1,5 +1,6 @@
 body{
   background-color: aliceblue;
+  scroll-behavior: smooth;
   
 }
 header{
@@ -9,8 +10,11 @@ header{
   left: 0;
   top: 0;
   width: 100%;
-  height: auto;
+  
 
+}
+li a{
+  font-size:0.4em;
 }
 .nav{
   display: flex;
@@ -20,6 +24,7 @@ header{
   padding: 12px 17px;
   flex-wrap: wrap;
   height: auto;
+  
 }
 
 .search{
