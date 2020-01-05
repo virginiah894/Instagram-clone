@@ -147,14 +147,25 @@ color:slategray;
   font-size: 0.9em;
 }
 
-.pic{
+.pic img{
   margin: 0;
   border-radius: 50%;
   background-color:black;
   border:0 solid black;
-  width: 30px;
-  height:30px;
+  width: 70px;
+  height:70px;
   display: inline-block;
+}
+
+.ppic img{
+  margin: 0;
+  border-radius: 50%;
+  background-color:black;
+  border:0 solid black;
+  width: 200px;
+  height:200px;
+  
+  
 }
 .info{
   padding-left: 17px;
@@ -163,4 +174,7 @@ color:slategray;
 #image img{ 
   width:100%;
   height: 420px;
+}
+.options{
+  margin-bottom: 30px;
 }
