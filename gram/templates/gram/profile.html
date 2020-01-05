@@ -2,11 +2,36 @@
 {% load bootstrap4%}
 
 {%block content%}
-
+<!-- 
   <p>{{profile.post}}</p>
   <p>{{user.username}}</p>
-  <p>{{user.post}}</p>
-  <p>Hello world</p>
+  <p>{{user.post}}</p> -->
+  <div class="row">
+    
+    <div class="col-md-6">
+  <div class="ppic">
   <img src="{{profile.profile_photo.url}}" alt="">
+  </div>
+  </div>
+  <div class="col-md-6">
+    <h3>{{user.username}}</h3>
+   <button><a href="{% url 'gram:update'%}" style="text-decoration: none;">EDIT PROFILE</a></button>
+   <a href="{% url 'gram:update'%}"><i class="fa fa-cog" style= 'color:black;font-size: 30px;'></i></a>
+   <div class="profile_media">
+    <span class="post_count"> <span class="number_of_posts">{{ user.posts.count }}</span> posts </span>
+    <a href=""> <span class="number_of_followers" > {{ user.profile.followed_by.count }}</span> followers</a>
+    <a href=""> <span class="number_of_follows" > {{ user.profile.follows.count }} </span> following</a>
+</div>
+<div class="bio_content">
+  <p class="profilename">{{ user.profile.name }}</p>
+  <p class="text-secondary">{{ user.profile.bio|linebreaks }}</p>
+</div>
+
+</div>
+
+
+  </div>
+  </div>
+  
  
 {% endblock %}
