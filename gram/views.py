@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Post, Profile
+from .models import Post,Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
@@ -63,12 +63,12 @@ def account(request):
   return render (request,'account.html',{})      
 
 @login_required(login_url='/accounts/login/')
-def new_post(request):
+def new_post(request,post_id):
     current_user = request.user
     if request.method == 'POST':
         form = UserPostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
+        if form.is_valid(self,form):
+            post = form.save()
             post.author = current_user
             post.save()
         return redirect('/')
@@ -80,22 +80,26 @@ def new_post(request):
 
 @login_required
 def account_update(request):
+  
+  # if request.method == 'POST':
+  #   try:
+  #     profile = request.user.profile
+  #   except Profile.DoesNotExist:
+  #     profile = Profile(user=request.user)
   if request.method == 'POST':
-    # profile = Profile.objects.create(user=request.user)
-
-    user_form = AccountUpdate(request.POST,instance=request.user)
-    details_form = DetailsUpdate(request.POST,request.FILES,instance=request.user)
-    if user_form.is_valid() and details_form.is_valid():
-      user_form.save()
-      details_form.save()
-      messages.success(request,'Your Profile account has been updated successfully')
-      return redirect('gram:profile')
+       user_form = AccountUpdate(request.POST,instance=request.user)
+       details_form = DetailsUpdate(request.POST ,request.FILES,instance=request.user.profile)
+       if user_form.is_valid() and details_form.is_valid():
+          user_form.save()
+          details_form.save()
+          messages.success(request,f'Your Profile account has been updated successfully')
+          return redirect('gram:profile')
   else:
   
 
-    user_form = AccountUpdate(instance=request.user)
-    
-    details_form = DetailsUpdate(instance=request.user) 
+      user_form = AccountUpdate(instance=request.user)
+      
+      details_form = DetailsUpdate(instance=request.user.profile) 
   forms = {
     'user_form':user_form,
     'details_form':details_form
@@ -109,10 +113,10 @@ def account_update(request):
 def profile(request):
   current_user = request.user
   
-  profile = Profile.objects.get(user=request.user)
+  profile = Profile.objects.get(user=request.user.profile.user)
   pic = Profile.objects.filter(profile_photo = current_user.id)
   
-  posts = Post.objects.all()
+  posts = Post.objects.count()
   
   
   return render(request,'gram/profile.html',{"profile":profile,'pic':pic,"posts":posts})
