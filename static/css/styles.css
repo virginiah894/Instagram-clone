@@ -133,8 +133,16 @@ color:slategray;
   padding-top: 44px;
   position: absolute;
 }
-.caption{
+.profileicons a{
+ 
+  color:black;
+  margin:12px;
+
+  font-size: 1.5em;
+}
+.cp{
   width:100%;
+  margin-right: 14px;
   display: inline-block;
   padding: 0px 18px;
   font-size: 1.4em;

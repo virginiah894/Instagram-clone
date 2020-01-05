@@ -114,9 +114,9 @@ def profile(request):
   current_user = request.user
   
   profile = Profile.objects.get(user=request.user.profile.user)
-  pic = Profile.objects.filter(profile_photo = current_user.id)
+  images = Post.objects.all()
   
-  posts = Post.objects.count()
+  post = images.count()
   
   
-  return render(request,'gram/profile.html',{"profile":profile,'pic':pic,"posts":posts})
+  return render(request,'gram/profile.html',{"profile":profile,'images':images,"post":post})
