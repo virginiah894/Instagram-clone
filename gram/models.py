@@ -25,12 +25,24 @@ class Post(models.Model):
     def __str__(self):
       return self.caption
 
+     @classmethod
+    def all_posts(cls):
+        posts = cls.objects.all()
+        return posts
+
+
     def save_post(self):
         self.save()
+    def delete_post(self):
+        return self.delete()
+
+    
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile')
     
-    profile_photo = models.ImageField(default='default_image.jpg', upload_to='profile_pics')
+    profile_photo = models.ImageField(default='fur.jpg', upload_to='profile_pics')
     name = models.CharField(max_length=50)
     bio = models.TextField(max_length=250)
     follows = models.ManyToManyField('Profile', related_name='followed_by')

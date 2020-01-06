@@ -18,7 +18,7 @@ from django.views.generic import(
 
 # Create your views here.
 # @login_required(login_url='/accounts/login/')
-class PostListView(LoginRequiredMixin,ListView):
+class PostListView(ListView):
   template_name = 'gram/post_list.html'
   queryset = Post.objects.all().filter(posted_date__lte=timezone.now()).order_by('-posted_date')
   context_object_name ='posts'
@@ -113,7 +113,7 @@ def account_update(request):
 def profile(request):
   current_user = request.user
   
-  profile = Profile.objects.get(user=request.user.profile.user)
+  profile = Profile.objects.get_or_create(user=request.user)
   images = Post.objects.all()
   
   post = images.count()
