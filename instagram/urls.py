@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('gram.urls')),
     path('',account),
-    path('account/login/',login_view),
+    # path('account/login/',login_view),
     path('account/register/',register_view),
     # path('account/logout/',logout_view),
     path('tinymce/',include('tinymce.urls')),
