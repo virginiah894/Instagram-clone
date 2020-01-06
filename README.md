@@ -50,5 +50,5 @@ Bootdstrap 3
 Javascript 
 
 ## License
-(License)[https://github.com/virginiah894/Instagram-clone/blob/master/LICENSE]
+[MIT](https://github.com/virginiah894/Instagram-clone/blob/master/LICENSE)
 
