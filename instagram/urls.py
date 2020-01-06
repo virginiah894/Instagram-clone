@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 
 
-from django.contrib.auth import views
+from django.contrib.auth import views,logout
 from django.urls import path, include
 from gram.views import account
 
