@@ -7,7 +7,7 @@
 
   <div class="col-md-6">
     <div class="ppic">
-      <img src="{{profile.profile_photo.url}}" alt="">
+      <img src="{{user.profile.profile_photo.url}}" alt="">
     </div>
   </div>
   <div class="col-md-6">
@@ -53,11 +53,14 @@
   <div class="row">
 
 {% for image in images %}
-<div class="col-md-4">
-    <div class="card-column" style="width: 18rem;">
-      <img class="card-img-top" src="{{image.image.url}}" alt="Card image cap">
+<div class="col-md-3">
+    <div class="card-column" >
+      <img class="card-img-top" src="{{image.image.url}}" alt="Card image cap" style="width: 250px; height: 250px;">
       <div class="card-body">
-        <h5 class="card-title">{{image.caption}}</h5>
+       {% autoescape on %}
+       <h5 class="card-title">{{image.caption | safe}}</h5>
+   {% endautoescape %}
+        <!-- <h5 class="card-title">{{image.caption}}</h5> -->
         <i class="fa fa-heart "></i>
         <i class="fa fa-comment "></i>
 

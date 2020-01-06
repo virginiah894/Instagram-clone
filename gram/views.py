@@ -18,9 +18,9 @@ from django.views.generic import(
 
 # Create your views here.
 # @login_required(login_url='/accounts/login/')
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin,ListView):
   template_name = 'gram/post_list.html'
-  queryset = Post.objects.all().filter(posted_date__lte=timezone.now()).order_by('-posted_date')
+  queryset = Post.objects.filter(posted_date__lte=timezone.now()).order_by('-posted_date')
   context_object_name ='posts'
 
 # @login_required(login_url='/accounts/login/')
@@ -33,6 +33,7 @@ class PostCreateView(LoginRequiredMixin,CreateView):
   def form_valid(self,form):
      print (form.cleaned_data)
      form.instance.author = self.request.user
+     form.save()
      return super().form_valid(form)
 
 # @login_required(login_url='/accounts/login/')
@@ -68,7 +69,7 @@ def new_post(request,post_id):
     if request.method == 'POST':
         form = UserPostForm(request.POST, request.FILES)
         if form.is_valid(self,form):
-            post = form.save()
+            post = form.save(commit=False)
             post.author = current_user
             post.save()
         return redirect('/')
@@ -114,7 +115,7 @@ def profile(request):
   current_user = request.user
   
   profile = Profile.objects.get_or_create(user=request.user)
-  images = Post.objects.all()
+  images = request.user.post_set.all()
   
   post = images.count()
   

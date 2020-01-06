@@ -16,6 +16,11 @@ class PostForm(forms.ModelForm):
        'image',
        'caption'
      ]
+  def save(self,commit=True):
+    user = super().save(commit=False)
+    if commit:
+      user.save()
+    return user
 
 class UserPostForm(forms.ModelForm):
     class Meta:

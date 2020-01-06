@@ -8,37 +8,6 @@ from django.db.models.signals import post_save
 from django.db import models
 from django.utils import timezone
 
-
-class Post(models.Model):
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
-    image = models.ImageField(null=True)
-    caption = HTMLField(null=True)
-    posted_date = models.DateTimeField(default=timezone.now)
-    comments = HTMLField(null=True)
-    likes = models.TextField(null=True)
-    @classmethod
-    def search_by_author(cls,search_term):
-        posts = cls.objects.filter(author__icontains=search_term)
-        return posts
-
-
-    def __str__(self):
-      return self.caption
-
-    @classmethod
-    def all_posts(cls):
-        posts = cls.objects.all()
-        return posts
-
-
-    def save_post(self):
-        self.save()
-    def delete_post(self):
-        return self.delete()
-
-    
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile')
     
@@ -67,3 +36,34 @@ class Profile(models.Model):
 
     #         post_save.connect(create_user_profile, sender=User)
 
+
+
+class Post(models.Model):
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    image = models.ImageField(null=True)
+    caption = HTMLField(null=True)
+    posted_date = models.DateTimeField(default=timezone.now)
+    comments = HTMLField(null=True)
+    likes = models.TextField(null=True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
+
+
+    @classmethod
+    def search_by_author(cls,search_term):
+        posts = cls.objects.filter(author__icontains=search_term)
+        return posts
+
+
+    def __str__(self):
+      return self.caption
+
+    @classmethod
+    def all_posts(cls):
+        posts = cls.objects.all()
+        return posts
+
+
+    def save_post(self):
+        super().save()
+    def delete_post(self):
+        return self.delete()
