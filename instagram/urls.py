@@ -32,7 +32,7 @@ urlpatterns = [
     # path('account/logout/',logout_view),
     path('tinymce/',include('tinymce.urls')),
     path('accounts/',include('registration.backends.simple.urls')),
-    path('logout/' views.logout {"next_page":'/'}),
+    path('logout/' ,views.logout, {"next_page":'/'}),
     
 
 ]
