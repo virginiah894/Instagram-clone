@@ -1,6 +1,7 @@
 ## App Name : 
 - Instagram-clone
-An application for users to post photos,posts and comment ,like share what other users have posted as well 
+
+#### An application for users to post photos,posts and comment ,like share what other users have posted as well 
 
 ## Author
 virginiah periah [https://github.com/virginiah894]
