@@ -62,7 +62,8 @@
    {% endautoescape %}
         <!-- <h5 class="card-title">{{image.caption}}</h5> -->
         <i class="fa fa-heart "></i>
-        <i class="fa fa-comment "></i>
+        <a href="{% url 'gram:comment' image.id %}" class="btn btn-outline-info btn-sm">comments</a>
+        
 
       </div>
     </div>

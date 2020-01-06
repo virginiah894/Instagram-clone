@@ -43,7 +43,7 @@ class Post(models.Model):
     image = models.ImageField(null=True)
     caption = HTMLField(null=True)
     posted_date = models.DateTimeField(default=timezone.now)
-    comments = HTMLField(null=True)
+    # comments = HTMLField(null=True)
     likes = models.TextField(null=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
 
@@ -58,6 +58,12 @@ class Post(models.Model):
       return self.caption
 
     @classmethod
+    def get_one_post(cls,id):
+        post = cls.objects.get(pk=id)
+        return post
+
+
+    @classmethod
     def all_posts(cls):
         posts = cls.objects.all()
         return posts
@@ -67,3 +73,27 @@ class Post(models.Model):
         super().save()
     def delete_post(self):
         return self.delete()
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    comment = models.CharField(max_length=230,blank=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    
+    commented_on = models.DateTimeField(auto_now_add=True)
+
+    def save_comment(self):
+        self.save()
+    
+    
+    @classmethod
+    def all_comments(cls,id):
+        comments = cls.objects.filter(post__id=id)
+        return comments
+    
+    
+    def __str__(self):
+        
+        return self.comment
+        
+    
+     

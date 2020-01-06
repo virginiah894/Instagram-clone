@@ -2,11 +2,11 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Post,Profile
+from .models import Post,Profile,Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
-from .forms import PostForm, UserPostForm,AccountUpdate,DetailsUpdate
+from .forms import  UserPostForm,AccountUpdate,DetailsUpdate,CommentPostForm
 from django.http import HttpResponse
 from django.contrib import messages
 from django.views.generic import(
@@ -24,19 +24,46 @@ class PostListView(LoginRequiredMixin,ListView):
   context_object_name ='posts'
 
 # @login_required(login_url='/accounts/login/')
-class PostCreateView(LoginRequiredMixin,CreateView):
-  template_name = 'gram/create.html'
-  form_class = PostForm
-  queryset = Post.objects.all()
-  success_url = '/' 
+# class PostCreateView(LoginRequiredMixin,CreateView):
+#   template_name = 'gram/create.html'
+#   form_class = PostForm
+#   queryset = Post.objects.all()
+#   success_url = '/' 
 
-  def form_valid(self,form):
-     print (form.cleaned_data)
-     form.instance.author = self.request.user
-     form.save()
-     return super().form_valid(form)
+#   def form_valid(self,form):
+#      print (form.cleaned_data)
+#      form.instance.author = self.request.user
+#      form.save()
+#      return super().form_valid(form)
 
 # @login_required(login_url='/accounts/login/')
+
+
+
+def post_comment(request,id):
+
+    current_user = request.user
+    post = Post.get_one_post(id=id)
+    if request.method == 'POST':
+        form = CommentPostForm(request.POST)
+        print(form)
+        
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.post_id = id
+            comment.save()
+        return redirect('/')
+
+    else:
+        form = CommentPostForm()
+        return render(request,'gram/post_comment.html',{"form":form,"post":post})  
+    
+def all_comments(request,id):
+    comments = Comment.all_comments(id)
+    number = len(comments)
+    
+    return render(request,'gram/comment.html',{"comments":comments,"number":number})   
 
 class PostDetailView(LoginRequiredMixin,DetailView):
   queryset=Post.objects.all().filter(posted_date__lte=timezone.now())
@@ -64,11 +91,11 @@ def account(request):
   return render (request,'account.html',{})      
 
 @login_required(login_url='/accounts/login/')
-def new_post(request,post_id):
+def new_post(request,id):
     current_user = request.user
     if request.method == 'POST':
         form = UserPostForm(request.POST, request.FILES)
-        if form.is_valid(self,form):
+        if form.is_valid():
             post = form.save(commit=False)
             post.author = current_user
             post.save()

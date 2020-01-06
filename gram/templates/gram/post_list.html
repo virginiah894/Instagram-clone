@@ -21,7 +21,9 @@
     </div>
     <div class="reactions">
 <a href=""><i class="fa fa-heart"></i></a>
-<a href=""><i class="fa fa-comment"></i></a>
+<a href="{%url 'gram:postComment' post.id %}"><i class="fa fa-comment"></i></a>
+<a href="{% url 'gram:comment' post.id %}" class="btn btn-outline-info btn-sm">comments</a>
+
 <a href=""><i class="fa fa-share"></i></a>
 <a href=""><i class="fa fa-bookmark" style="float: right;margin-right:20px ;"></i></a>
     </div>
