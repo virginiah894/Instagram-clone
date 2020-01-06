@@ -25,7 +25,7 @@ class Post(models.Model):
     def __str__(self):
       return self.caption
 
-     @classmethod
+    @classmethod
     def all_posts(cls):
         posts = cls.objects.all()
         return posts
