@@ -18,7 +18,7 @@ from django.views.generic import(
 
 # Create your views here.
 # @login_required(login_url='/accounts/login/')
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin,ListView):
   template_name = 'gram/post_list.html'
   queryset = Post.objects.all()[::-1]
   context_object_name ='posts'
