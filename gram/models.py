@@ -50,7 +50,7 @@ class Post(models.Model):
 
     @classmethod
     def search_by_author(cls,search_term):
-        posts = cls.objects.filter(author__icontains=search_term)
+        posts = cls.objects.filter(profile__icontains=search_term)
         return posts
 
 

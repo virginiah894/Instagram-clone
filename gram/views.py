@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from .forms import  UserPostForm,AccountUpdate,DetailsUpdate,CommentPostForm
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib import messages
 from django.views.generic import(
   ListView,
@@ -101,7 +101,7 @@ def new_post(request,id):
             post = form.save(commit=False)
             post.author = current_user
             post.save()
-        return redirect('/')
+        return HttpResponseRedirect('/')
 
     else:
         form =UserPostForm()
