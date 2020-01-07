@@ -20,8 +20,10 @@ from django.views.generic import(
 # @login_required(login_url='/accounts/login/')
 class PostListView(LoginRequiredMixin,ListView):
   template_name = 'gram/post_list.html'
-  queryset = Post.objects.filter(posted_date__lte=timezone.now()).order_by('-posted_date')
+  queryset = Post.objects.all()[::-1]
   context_object_name ='posts'
+  class Meta:
+    ordering = ['posted_date']
 
 # @login_required(login_url='/accounts/login/')
 # class PostCreateView(LoginRequiredMixin,CreateView):
