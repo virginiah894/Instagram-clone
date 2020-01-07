@@ -19,6 +19,7 @@ urlpatterns = [
     path('update/',views.account_update,name='update'),
     path('comment/<int:id>/',views.all_comments,name='comment'),
     path('post_comment/<int:id>/',views.post_comment,name='postComment'),
+    
 
 
 ]
