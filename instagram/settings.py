@@ -74,7 +74,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'account',
     'tinymce',
-    'livesync',
+
     
 ]
 
