@@ -12,7 +12,7 @@ django-bootstrap4==1.1.1
 django-cors-headers==3.2.1
 django-crispy-forms==1.8.1
 django-heroku==0.3.1
-django-registration==2.5.1
+django-registration==3.1.2
 django-reset-migrations==0.3.1
 django-tinymce==2.8.0
 gunicorn==20.0.4
